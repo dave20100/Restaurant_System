@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+margin: 0;
+padding: 0;
+border: 0;
+line-height: 1.4em;
+vertical-align: baseline;
+text-decoration: none;
+outline: 0;
+}
+
+html, body {
+  height: 100%;
+}

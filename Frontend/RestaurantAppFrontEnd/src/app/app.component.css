@@ -1,0 +1,15 @@
+.main-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.footer {
+    background-color: rgb(39, 179, 125);
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.content {
+    flex: 1 0 auto;
+}
