@@ -33,10 +33,10 @@ INSERT INTO Dish(Id, Title, Description, Price, Kcal, Picture, MenuId) VALUES
 (10, 'MUHAMMARA', 'Pasta z pieczonej papryki i orzechów włoskich', 13, 190, 'https://restauracjaleila.pl/wp-content/uploads/2019/10/img_0346.jpg', 2),
 (11, 'BABA GANOUSH', '(bakłażan, mix papryk, pomidor, cebula, oliwa z oliwek, melasa z granata)', 15, 222, 'https://restauracjaleila.pl/wp-content/uploads/2019/10/img_0597.jpg', 2),
 (12, 'BUTTER HALLOUMI', 'Grillowany ser halloumi w sosie pomidorowo-orzechowym', 19, 400, 'https://restauracjaleila.pl/wp-content/uploads/2019/10/img_0989-1.jpg', 2),
-(13, 'STANDARD', '100% wołowiny, sos biały, sałata lodowa, ser cheddar, ogórek kiszony, pomidor, cebula', 21, 972, null, 3),
-(14, 'GONZALES', '100% wołowiny, sos różowy, rukola, pasta red curry, ser cheddar, jalapeño, nachosy', 26, 1068, null, 3),
-(15, 'PESTARDO', '100% wołowiny, sos biały, roszponka, pesto z suszonych pomidorów i rukoli, grillowana mozzarella, pomidor', 26, 1100, null, 3),
-(16, 'KURA CLASSICO', 'kurczak w autorskiej panierce, autorski sos, sałata lodowa, pomidor, czerwona cebula', 23, 917, null, 3);
+(13, 'STANDARD', '100% wołowiny, sos biały, sałata lodowa, ser cheddar, ogórek kiszony, pomidor, cebula', 21, 972, 'https://pasibus.blob.core.windows.net/media/2264/standard.jpg', 3),
+(14, 'GONZALES', '100% wołowiny, sos różowy, rukola, pasta red curry, ser cheddar, jalapeño, nachosy', 26, 1068, 'https://pasibus.blob.core.windows.net/media/2252/gonzales.jpg', 3),
+(15, 'PESTARDO', '100% wołowiny, sos biały, roszponka, pesto z suszonych pomidorów i rukoli, grillowana mozzarella, pomidor', 26, 1100, 'https://pasibus.blob.core.windows.net/media/2262/pestardo.jpg', 3),
+(16, 'KURA CLASSICO', 'kurczak w autorskiej panierce, autorski sos, sałata lodowa, pomidor, czerwona cebula', 23, 917, 'https://pasibus.blob.core.windows.net/media/2269/kura-classico.jpg', 3);
 --(17, '', '', , , null, 3),
 ;
 
