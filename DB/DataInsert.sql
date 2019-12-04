@@ -38,7 +38,7 @@ INSERT INTO Dish(Id, Title, Description, Price, Kcal, Picture, MenuId) VALUES
 (15, 'PESTARDO', '100% wołowiny, sos biały, roszponka, pesto z suszonych pomidorów i rukoli, grillowana mozzarella, pomidor', 26, 1100, 'https://pasibus.blob.core.windows.net/media/2262/pestardo.jpg', 3),
 (16, 'KURA CLASSICO', 'kurczak w autorskiej panierce, autorski sos, sałata lodowa, pomidor, czerwona cebula', 23, 917, 'https://pasibus.blob.core.windows.net/media/2269/kura-classico.jpg', 3);
 --(17, '', '', , , null, 3),
-;
+
 
 
 Select * from Dish
@@ -48,9 +48,9 @@ Select * from Dish
 --(1, 'EQWEQE', 1231, 12);
 
 Select * from Discount
-delete from Dish where 1=1
-delete from Menu where 1=1
-delete from Discount where 1=1
-delete from Restaurant where 1=1
-delete from Location where 1=1
+--delete from Dish where 1=1
+--delete from Menu where 1=1
+--delete from Discount where 1=1
+--delete from Restaurant where 1=1
+--delete from Location where 1=1
 GO
