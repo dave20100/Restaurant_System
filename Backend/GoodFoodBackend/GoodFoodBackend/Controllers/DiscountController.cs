@@ -23,7 +23,15 @@ namespace GoodFoodBackend.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return new JsonResult(dbContext.Discount.First(d => d.Id == id));
+            try
+            {
+                Discount found = dbContext.Discount.First(d => d.ResteurantId == id);
+                return new JsonResult(found);
+            }
+            catch
+            {
+                return new JsonResult(null);
+            }
         }
 
         [HttpPost]

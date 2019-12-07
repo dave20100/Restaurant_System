@@ -24,7 +24,14 @@ namespace GoodFoodBackend.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return new JsonResult(dbContext.Dish.First(d => d.Id == id));
+            try
+            {
+                return new JsonResult(dbContext.Dish.First(d => d.MenuId == dbContext.Menu.First(m => m.ResteurantId == id).Id));
+            }
+            catch
+            {
+                return new JsonResult(null);
+            }
         }
 
         // POST api/values
