@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace GoodFoodBackend.Models
@@ -11,6 +12,7 @@ namespace GoodFoodBackend.Models
         public string City { get; set; }
         public string PostCode { get; set; }
 
+        [JsonIgnore]
         public virtual Restaurant Restaurant { get; set; }
     }
 }

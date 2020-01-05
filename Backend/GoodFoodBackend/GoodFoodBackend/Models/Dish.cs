@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace GoodFoodBackend.Models
@@ -13,6 +14,7 @@ namespace GoodFoodBackend.Models
         public string Picture { get; set; }
         public int? MenuId { get; set; }
 
+        [JsonIgnore]
         public virtual Menu Menu { get; set; }
     }
 }
