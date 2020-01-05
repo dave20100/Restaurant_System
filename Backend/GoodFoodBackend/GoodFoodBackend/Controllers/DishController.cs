@@ -25,7 +25,7 @@ namespace GoodFoodBackend.Controllers
         {
             try
             {
-                return new JsonResult(dbContext.Dish.First(d => d.MenuId == dbContext.Menu.First(m => m.ResteurantId == id).Id));
+                return new JsonResult(dbContext.Dish.First(dish => dish.Id == id));
             }
             catch
             {

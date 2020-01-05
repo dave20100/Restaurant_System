@@ -18,7 +18,6 @@ namespace GoodFoodBackend.Models
         public int? ResteurantId { get; set; }
         [JsonIgnore]
         public virtual Restaurant Resteurant { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Dish> Dish { get; set; }
     }
 }
