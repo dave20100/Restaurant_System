@@ -50,6 +50,8 @@ namespace GoodFoodBackend.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            dbContext.Dish.Remove(dbContext.Dish.FirstOrDefault(di => di.Id == id));
+            dbContext.SaveChanges();
         }
     }
 }

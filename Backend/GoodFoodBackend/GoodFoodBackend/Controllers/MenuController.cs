@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GoodFoodBackend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoodFoodBackend.Controllers
 {
@@ -23,7 +24,7 @@ namespace GoodFoodBackend.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return new JsonResult(dbContext.Menu.First(d => d.Id == id));
+            return new JsonResult(dbContext.Menu.Include(o => o.Dish).First(d => d.Id == id));
         }
 
         [HttpPost]

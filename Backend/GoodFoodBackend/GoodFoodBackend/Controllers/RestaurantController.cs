@@ -48,5 +48,18 @@ namespace GoodFoodBackend.Controllers
             }
         }
 
+        [HttpGet("Full/{id}")]
+        public ActionResult<string> GetFullInfo(int id)
+        {
+            try
+            {
+                return new JsonResult(dbContext.Restaurant.Include(o => o.IdNavigation).Include(o => o.Discount).Include(o => o.Menu).FirstOrDefault(res => res.Id == id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }
