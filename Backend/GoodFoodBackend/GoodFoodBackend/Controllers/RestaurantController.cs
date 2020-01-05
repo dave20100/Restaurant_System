@@ -61,5 +61,19 @@ namespace GoodFoodBackend.Controllers
             }
         }
 
+        [HttpGet("Discounts/{id}")]
+        public ActionResult<string> GetDiscounts(int id)
+        {
+            try
+            {
+                Discount found = dbContext.Discount.First(d => d.ResteurantId == id);
+                return new JsonResult(found);
+            }
+            catch
+            {
+                return new JsonResult(null);
+            }
+        }
+
     }
 }
