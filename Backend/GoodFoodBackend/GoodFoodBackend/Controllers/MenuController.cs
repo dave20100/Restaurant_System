@@ -28,13 +28,22 @@ namespace GoodFoodBackend.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Menu menu)
         {
+            dbContext.Menu.Add(menu);
+            dbContext.SaveChanges();
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Menu toDelete = dbContext.Menu.Include(o => o.Dish).FirstOrDefault(men => men.Id == id);
+            foreach(Dish dish in toDelete.Dish)
+            {
+                dbContext.Dish.Remove(dish);
+            }
+            dbContext.Menu.Remove(toDelete);
+            dbContext.SaveChanges();
         }
     }
 }

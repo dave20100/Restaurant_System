@@ -75,5 +75,30 @@ namespace GoodFoodBackend.Controllers
             }
         }
 
+        [HttpPost]
+        public void AddRestaurant([FromBody] Restaurant restaurant)
+        {
+            dbContext.Restaurant.Add(restaurant);
+            dbContext.SaveChanges();
+        }
+
+        [HttpDelete("{id}")]
+        public void DeleteRestaurant(int id)
+        {
+            Restaurant toDelete = dbContext.Restaurant.Include(o => o.IdNavigation).Include(o => o.Discount).Include(o => o.Menu).FirstOrDefault(res => res.Id == id);
+            dbContext.Location.Remove(toDelete.IdNavigation);
+            foreach(Discount discount in toDelete.Discount)
+            {
+                dbContext.Discount.Remove(discount);
+            }
+
+            foreach(Menu menu in toDelete.Menu)
+            {
+                dbContext.Menu.Remove(menu);
+            }
+            dbContext.Restaurant.Remove(toDelete);
+            dbContext.SaveChanges();
+        }
+        
     }
 }
