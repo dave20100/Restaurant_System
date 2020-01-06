@@ -1,0 +1,16 @@
+<div *ngIf="restaurant | async as info" class="card center" style="width: 80%;">
+    <div class="card-body">
+      <h3 class="card-title text-center">{{info.name}}</h3>
+      <p class="card-text">{{info.description}}</p>
+      <h5 class="card-title">Adres:</h5>
+      <p class="card-text">{{info.idNavigation.street}} {{info.idNavigation.number}} {{info.idNavigation.city}}</p>
+    </div>
+    <hr/>
+    <div class="card-body">
+      <app-restaurant-dish-list id = {{info.id}} ></app-restaurant-dish-list>
+    </div>
+    <hr/>
+    <div class="card-body">
+      <app-restaurant-discount id = {{info.id}} ></app-restaurant-discount>
+    </div>
+  </div>

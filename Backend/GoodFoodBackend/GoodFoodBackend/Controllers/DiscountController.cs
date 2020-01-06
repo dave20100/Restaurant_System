@@ -25,7 +25,7 @@ namespace GoodFoodBackend.Controllers
         {
             try
             {
-                Discount found = dbContext.Discount.First(d => d.ResteurantId == id);
+                Discount found = dbContext.Discount.First(d => d.Id == id);
                 return new JsonResult(found);
             }
             catch
@@ -35,18 +35,17 @@ namespace GoodFoodBackend.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Discount discount)
         {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            dbContext.Add(discount);
+            dbContext.SaveChanges();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteDiscount(int id)
         {
+            dbContext.Discount.Remove(dbContext.Discount.FirstOrDefault(dis => dis.Id == id));
+            dbContext.SaveChanges();
         }
     }
 }

@@ -1,0 +1,17 @@
+<div class="center" style="width: 80%;">
+    <div *ngIf="dish | async as dishValue" class="card" (click)="onClick(dishValue.id)">
+        <img src="{{dishValue.picture}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{dishValue.title}}</h5>
+          <p class="card-text">{{dishValue.description}}</p>
+          <p class="card-text">{{dishValue.kcal}} kcal</p>
+          <p class="card-text">{{dishValue.price}}zł</p>
+          <hr/>
+          <div class="btn-group" role="group" aria-label="Basic example" style="width:100%">
+            <button type="button" class="btn btn-success"  style="margin:5px;">Usuń Danie</button>
+          </div>
+          <hr/>
+          <p class="text-center" style="color: green;" routerLink="/Menu/{{dishValue.menuId}}">Dostępne w menu</p>
+        </div>
+    </div>
+</div>

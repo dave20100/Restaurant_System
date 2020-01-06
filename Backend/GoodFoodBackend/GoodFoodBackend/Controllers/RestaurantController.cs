@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using GoodFoodBackend.Models;
 using Microsoft.AspNetCore.Http;
@@ -17,28 +18,87 @@ namespace GoodFoodBackend.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new JsonResult(dbContext.Restaurant);
+            
+            return new JsonResult(dbContext.Restaurant.Include(o => o.IdNavigation));
         }
 
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return new JsonResult(dbContext.Restaurant.First(d => d.Id == id));
+            try
+            {
+                return new JsonResult(dbContext.Restaurant.Include(o => o.IdNavigation).FirstOrDefault(res => res.Id == id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("Dishes/{id}")]
+        public ActionResult<string> GetDishes(int id)
+        {
+            try
+            {
+                return new JsonResult(dbContext.Menu.Include("Dish").FirstOrDefault(men => men.ResteurantId == id).Dish);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("Full/{id}")]
+        public ActionResult<string> GetFullInfo(int id)
+        {
+            try
+            {
+                return new JsonResult(dbContext.Restaurant.Include(o => o.IdNavigation).Include(o => o.Discount).Include(o => o.Menu).FirstOrDefault(res => res.Id == id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        [HttpGet("Discounts/{id}")]
+        public ActionResult<string> GetDiscounts(int id)
+        {
+            try
+            {
+                Discount found = dbContext.Discount.First(d => d.ResteurantId == id);
+                return new JsonResult(found);
+            }
+            catch
+            {
+                return new JsonResult(null);
+            }
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void AddRestaurant([FromBody] Restaurant restaurant)
         {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            dbContext.Restaurant.Add(restaurant);
+            dbContext.SaveChanges();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteRestaurant(int id)
         {
+            Restaurant toDelete = dbContext.Restaurant.Include(o => o.IdNavigation).Include(o => o.Discount).Include(o => o.Menu).FirstOrDefault(res => res.Id == id);
+            dbContext.Location.Remove(toDelete.IdNavigation);
+            foreach(Discount discount in toDelete.Discount)
+            {
+                dbContext.Discount.Remove(discount);
+            }
+
+            foreach(Menu menu in toDelete.Menu)
+            {
+                dbContext.Menu.Remove(menu);
+            }
+            dbContext.Restaurant.Remove(toDelete);
+            dbContext.SaveChanges();
         }
+        
     }
 }

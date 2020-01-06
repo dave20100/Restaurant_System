@@ -1,0 +1,23 @@
+<div *ngIf="restaurant | async as info" class="card center" style="width: 80%;">
+    <div class="card-body">
+      <h3 class="card-title text-center">{{info.name}}</h3>
+      <p class="card-text">{{info.description}}</p>
+      <h5 class="card-title">Adres:</h5>
+      <p class="card-text">{{info.idNavigation.street}} {{info.idNavigation.number}} {{info.idNavigation.city}}</p>
+    </div>
+    <hr/>
+    <h5 class="text-center" style="margin-bottom: 10px;"> Menu</h5>
+    <div class="card"   style="margin-bottom: 10px;">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let menu of info.menu" class="list-group-item text-center" (click)="onClick(menu.id)">
+                    {{menu.description}}
+            </li>
+        </ul>
+    </div>
+    <hr/>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-success"  style="margin:5px;">Usuń Restaurację</button>
+        <button type="button" class="btn btn-success" routerLink="/AddDiscount/{{info.id}}" style="margin:5px;">Dodaj Promocję</button>
+        <button type="button" class="btn btn-success" routerLink="/AddMenu/{{info.id}}" style="margin:5px;">Dodaj Menu</button>
+      </div>
+</div>

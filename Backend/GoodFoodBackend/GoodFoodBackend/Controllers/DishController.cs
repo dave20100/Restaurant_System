@@ -20,13 +20,12 @@ namespace GoodFoodBackend.Controllers
             return new JsonResult(dbContext.Dish);
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
             try
             {
-                return new JsonResult(dbContext.Dish.First(d => d.MenuId == dbContext.Menu.First(m => m.ResteurantId == id).Id));
+                return new JsonResult(dbContext.Dish.First(dish => dish.Id == id));
             }
             catch
             {
@@ -34,22 +33,18 @@ namespace GoodFoodBackend.Controllers
             }
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Dish dish)
         {
+            dbContext.Dish.Add(dish);
+            dbContext.SaveChanges();
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            dbContext.Dish.Remove(dbContext.Dish.FirstOrDefault(di => di.Id == id));
+            dbContext.SaveChanges();
         }
     }
 }

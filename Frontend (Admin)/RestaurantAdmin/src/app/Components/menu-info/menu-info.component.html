@@ -1,0 +1,24 @@
+<div class="center" style="width: 80%;">
+    <h3 class="text-center">Menu</h3>
+
+    <div *ngIf="menu | async as dishes" class="row">
+        <div *ngFor="let dish of dishes.dish" class="card col-sm-12 col-md-6 col-lg-4" (click)="onClick(dish.id)">
+            <img src="{{dish.picture}}" class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">{{dish.title}}</h5>
+            <p class="card-text">{{dish.description}}</p>
+            <p class="card-text">{{dish.price}}zł</p>
+            </div>
+        </div>
+        <hr/>
+        <div class="btn-group" role="group" aria-label="Basic example" style="width:100%">
+            <button type="button" class="btn btn-success"  style="margin:5px;">Usuń Menu</button>
+            <button type="button" class="btn btn-success" routerLink="/AddDish/{{dishes.id}}" style="margin:5px;">Dodaj danie</button>
+        </div>
+        
+        <hr/>
+        <div class="center">
+            <p class="text-center" style="color: green;" routerLink="/Info/{{dishes.resteurantId}}">Dostępne w restauracji</p>
+        </div>    
+    </div> 
+</div>

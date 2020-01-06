@@ -12,3 +12,19 @@ C:\Users\Dawid\Desktop\Studia\Magisterka 2 semestr\Rozproszone i obiektowe syste
 C:\Users\Dawid\Desktop\Studia\Magisterka 2 semestr\Rozproszone i obiektowe systemy\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.RazorTargetAssemblyInfo.cache
 C:\Users\Dawid\Desktop\Studia\Magisterka 2 semestr\Rozproszone i obiektowe systemy\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.dll
 C:\Users\Dawid\Desktop\Studia\Magisterka 2 semestr\Rozproszone i obiektowe systemy\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.pdb
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\appsettings.Development.json
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\appsettings.json
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\GoodFoodBackend.deps.json
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\GoodFoodBackend.runtimeconfig.json
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\GoodFoodBackend.runtimeconfig.dev.json
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\GoodFoodBackend.dll
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\bin\Debug\netcoreapp2.2\GoodFoodBackend.pdb
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.csprojAssemblyReference.cache
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.RazorAssemblyInfo.cache
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.RazorAssemblyInfo.cs
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.AssemblyInfoInputs.cache
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.AssemblyInfo.cs
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.RazorTargetAssemblyInfo.cache
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.dll
+E:\Studia\sementr8\rozproszoneBazy\Rest\Restaurant_System\Backend\GoodFoodBackend\GoodFoodBackend\obj\Debug\netcoreapp2.2\GoodFoodBackend.pdb

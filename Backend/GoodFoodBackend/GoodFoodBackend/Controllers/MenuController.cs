@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GoodFoodBackend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoodFoodBackend.Controllers
 {
@@ -23,22 +24,26 @@ namespace GoodFoodBackend.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return new JsonResult(dbContext.Menu.First(d => d.Id == id));
+            return new JsonResult(dbContext.Menu.Include(o => o.Dish).First(d => d.Id == id));
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Menu menu)
         {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            dbContext.Menu.Add(menu);
+            dbContext.SaveChanges();
         }
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Menu toDelete = dbContext.Menu.Include(o => o.Dish).FirstOrDefault(men => men.Id == id);
+            foreach(Dish dish in toDelete.Dish)
+            {
+                dbContext.Dish.Remove(dish);
+            }
+            dbContext.Menu.Remove(toDelete);
+            dbContext.SaveChanges();
         }
     }
 }
