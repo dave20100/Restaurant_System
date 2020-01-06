@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { RestApiHandlerService } from 'src/app/Services/rest-api-handler.service';
 
 @Component({
   selector: 'app-restaurant-info',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantInfoComponent implements OnInit {
 
-  constructor() { }
+  restaurant: Observable<any>;
+
+  constructor(private restApiService: RestApiHandlerService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.restaurant = this.restApiService.getRestaurant(id);
   }
 
 }

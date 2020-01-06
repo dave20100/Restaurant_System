@@ -6,7 +6,7 @@ import { HomePageComponent } from './Components/home-page/home-page.component';
 
 
 const routes: Routes = [
-  { path: 'Info', component: RestaurantInfoComponent},
+  { path: 'Info/:id', component: RestaurantInfoComponent},
   { path: '', component: HomePageComponent}
 ];
 

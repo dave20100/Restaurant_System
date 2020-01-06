@@ -27,7 +27,7 @@ export class RestApiService {
   }
 
   getRestaurant(id): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/api/Restaurant/Full/' + id)
+    return this.http.get<any>(this.apiURL + '/api/restaurant/full/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -42,8 +42,24 @@ export class RestApiService {
     );
   }
 
+  getDish(id): Observable<any> {
+    return this.http.get<any>(this.apiURL + '/api/Dish/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   getRestaurantDiscounts(id): Observable<any> {
     return this.http.get<any>(this.apiURL + '/api/Restaurant/Discounts/' + id)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getRestaurantMenu(id): Observable<any> {
+    return this.http.get<any>(this.apiURL + '/api/Menu/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)

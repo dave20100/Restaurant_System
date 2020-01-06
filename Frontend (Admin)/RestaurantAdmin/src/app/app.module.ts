@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestaurantListComponent } from './Components/restaurant-list/restaurant-list.component';
@@ -12,8 +14,8 @@ import { MenuInfoComponent } from './Components/menu-info/menu-info.component';
 import { AddMenuComponent } from './Components/add-menu/add-menu.component';
 import { DishInfoComponent } from './Components/dish-info/dish-info.component';
 import { AddDishComponent } from './Components/add-dish/add-dish.component';
-
-import { HttpClientModule } from '@angular/common/http';
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
+import { HomePageComponent } from './Components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { HttpClientModule } from '@angular/common/http';
     MenuInfoComponent,
     AddMenuComponent,
     DishInfoComponent,
-    AddDishComponent
+    AddDishComponent,
+    NavBarComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
