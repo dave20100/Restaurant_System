@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RestApiService } from 'src/app/Services/rest-api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuInfoComponent } from '../menu-info/menu-info.component';
 
 @Component({
   selector: 'app-add-menu',
@@ -17,13 +18,27 @@ export class AddMenuComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onClick() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.menu = this.restApiService.getRestaurantDishes(id);
+    const menuValue: Menu = {id: 11, description: 'elo1', resteurantId: Number(id)};
+    this.restApiService.createMenu(menuValue).subscribe(
+      (val) => {
+          console.log('POST call successful value returned in body', 
+                      val);
+      },
+      response => {
+          console.log('POST call in error', response);
+      },
+      () => {
+          console.log('The POST observable is now completed.');
+      });
   }
 
-  onClick(id) {
-    console.log(id);
-    this.router.navigateByUrl('/Dish/' + id);
-  }
-
+}
+export interface Menu {
+  id: number;
+  description: string;
+  resteurantId: number;
 }
