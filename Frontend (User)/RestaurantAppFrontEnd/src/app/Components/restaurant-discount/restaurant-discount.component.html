@@ -1,6 +1,10 @@
 <div>
-    <h3 class="text-center">Promocja</h3>
+    <h3 class="text-center">Promocje</h3>
 </div>
-<div>
-    Placeholder for discount list /toDo
+<div class="row" *ngIf = "discounts | async as discount">
+    <div *ngFor="let discountVal of discount.discount" class="card col">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{discountVal.description}}: {{discountVal.value}}%</h5>
+        </div>
+      </div>
 </div>

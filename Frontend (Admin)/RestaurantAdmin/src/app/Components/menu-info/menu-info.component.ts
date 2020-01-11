@@ -26,4 +26,20 @@ export class MenuInfoComponent implements OnInit {
     this.router.navigateByUrl('/Dish/' + id);
   }
 
+  onDelete() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.restApiService.deleteMenu(id).subscribe(
+      (val) => {
+          console.log('DELETE call successful value returned in body', 
+                      val);
+      },
+      response => {
+          console.log('DELETE call in error', response);
+      },
+      () => {
+          console.log('The DELETE observable is now completed.');
+      });
+    this.router.navigateByUrl('');
+  }
+
 }

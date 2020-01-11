@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RestApiHandlerService } from 'src/app/Services/rest-api-handler.service';
 
 @Component({
   selector: 'app-restaurant-discount',
@@ -8,10 +10,11 @@ import { Component, OnInit, Input } from '@angular/core';
 export class RestaurantDiscountComponent implements OnInit {
 
   @Input() id: string;
-
-  constructor() { }
+  discounts: Observable<any>;
+  constructor(private restApiService: RestApiHandlerService) { }
 
   ngOnInit() {
+    this.discounts = this.restApiService.getRestaurantDiscounts(this.id);
   }
 
 }

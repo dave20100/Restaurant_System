@@ -17,12 +17,43 @@ export class RestaurantInfoComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.restaurant = this.restApiService.getRestaurant(id);
+    this.route.params.subscribe(
+      params => {
+        this.restaurant = this.restApiService.getRestaurant(params.id);
+      }
+  );
   }
 
   onClick(id) {
-    console.log(id);
     this.router.navigateByUrl('/Menu/' + id);
   }
+  onDelete(id) {
+    this.restApiService.deleteDiscount(id).subscribe(
+      (val) => {
+          console.log('DELETE call successful value returned in body',
+                      val);
+          window.location.reload();
+      },
+      response => {
+          console.log('DELETE call in error', response);
+      },
+      () => {
+          console.log('The DELETE observable is now completed.');
+      });
+  }
+  onDeleteRestaurant(id) {
+    this.restApiService.deleteRestaurant(id).subscribe(
+      (val) => {
+          console.log('DELETE call successful value returned in body',
+                      val);
+          this.router.navigateByUrl('/');
+      },
+      response => {
+          console.log('DELETE call in error', response);
+      },
+      () => {
+          console.log('The DELETE observable is now completed.');
+      });
+  }
 }
+

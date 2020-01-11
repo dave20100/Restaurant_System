@@ -66,6 +66,38 @@ export class RestApiService {
     );
   }
 
+    createMenu(menu) {
+      return this.http.post<any>(this.apiURL + '/api/Menu', JSON.stringify(menu), this.httpOptions);
+    }
+
+    deleteMenu(id) {
+      return this.http.delete<any>(this.apiURL + '/api/Menu/' + id, this.httpOptions);
+    }
+
+    createDish(dish) {
+      return this.http.post<any>(this.apiURL + '/api/Dish', JSON.stringify(dish), this.httpOptions);
+    }
+
+    deleteDish(id) {
+      return this.http.delete<any>(this.apiURL + '/api/dish/' + id, this.httpOptions);
+    }
+
+    createRestaurant(restaurant) {
+      return this.http.post<any>(this.apiURL + '/api/Restaurant/', JSON.stringify(restaurant), this.httpOptions);
+    }
+
+    deleteRestaurant(id) {
+      return this.http.delete<any>(this.apiURL + '/api/Restaurant/' + id, this.httpOptions);
+    }
+
+    createDiscount(discount) {
+      return this.http.post<any>(this.apiURL + '/api/Discount', JSON.stringify(discount), this.httpOptions);
+    }
+
+    deleteDiscount(id) {
+      return this.http.delete<any>(this.apiURL + '/api/Discount/' + id, this.httpOptions);
+    }
+
   handleError(error) {
      let errorMessage = '';
      if (error.error instanceof ErrorEvent) {
