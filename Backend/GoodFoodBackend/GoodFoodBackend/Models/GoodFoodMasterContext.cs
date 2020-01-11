@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,8 +8,40 @@ namespace GoodFoodBackend.Models
 {
     public partial class GoodFoodMasterContext : DbContext
     {
+        //public static string ConnectionString = "Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;";
+
+        //static Thread t;
         public GoodFoodMasterContext()
         {
+            //if (t != null)
+            //{
+            //    return; 
+            //}
+            //t = new Thread(() =>
+            //{
+            //    Boolean changed = false;
+            //    for(; ; )
+            //    {
+            //        Thread.Sleep(1000);
+            //        try
+            //        {
+            //            this.SaveChanges();
+            //        }
+            //        catch(Exception e)
+            //        {
+            //            if(changed)
+            //            {
+            //                ConnectionString = "Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;";
+            //            }
+            //            else
+            //            {
+            //                ConnectionString = "Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;";
+            //            }
+            //        }
+                    
+            //    }
+            //});
+            //t.Start();
         }
 
         public GoodFoodMasterContext(DbContextOptions<GoodFoodMasterContext> options)
@@ -25,15 +59,19 @@ namespace GoodFoodBackend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#if DEBUG
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=GoodFoodMaster;Trusted_Connection=True;");
-#endif
-#if RELEASE
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=GoodFoodMaster;Trusted_Connection=True;");
-#endif
+                optionsBuilder.UseSqlServer("Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;");
+                try
+                {
+                    this.SaveChanges();
+                }
+                catch
+                {
+                    optionsBuilder.UseSqlServer("Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;");
+                }
             }
-
         }
+        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

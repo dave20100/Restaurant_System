@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using GoodFoodBackend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoodFoodBackend.Controllers
 {
