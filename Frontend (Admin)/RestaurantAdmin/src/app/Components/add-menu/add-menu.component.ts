@@ -12,7 +12,7 @@ import { MenuInfoComponent } from '../menu-info/menu-info.component';
 export class AddMenuComponent implements OnInit {
 
   menu: Observable<any>;
-
+  name = '';
   constructor(private restApiService: RestApiService,
               private route: ActivatedRoute,
               private router: Router) { }
@@ -20,13 +20,14 @@ export class AddMenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick() {
+  onSubmit() {
     const id = this.route.snapshot.paramMap.get('id');
-    const menuValue: Menu = {id: 11, description: 'elo1', resteurantId: Number(id)};
+    const menuValue: Menu = {id: 15, description: this.name, resteurantId: Number(id)};
     this.restApiService.createMenu(menuValue).subscribe(
       (val) => {
-          console.log('POST call successful value returned in body', 
+          console.log('POST call successful value returned in body',
                       val);
+          this.router.navigateByUrl('/Info/' + id);
       },
       response => {
           console.log('POST call in error', response);
@@ -34,8 +35,7 @@ export class AddMenuComponent implements OnInit {
       () => {
           console.log('The POST observable is now completed.');
       });
-  }
-
+    }
 }
 export interface Menu {
   id: number;

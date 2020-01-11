@@ -23,6 +23,7 @@ export class NavBarComponent implements OnInit {
   }
   onClick() {
     if (this.id !== '0') {
+      this.router.navigateByUrl('/');
       this.router.navigateByUrl('/Info/' + this.id);
     }
 

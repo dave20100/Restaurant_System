@@ -43,7 +43,7 @@ export class RestApiHandlerService {
   }
 
   getRestaurantDiscounts(id): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/api/Restaurant/Discounts/' + id)
+    return this.http.get<any>(this.apiURL + '/api/Restaurant/Full/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)

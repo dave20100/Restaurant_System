@@ -8,7 +8,7 @@
       <form class="form-inline my-2 my-lg-0 center">
         <select class="form-control form-control-lg col-8" (change)="onChange($event.target.value)">
           <option [value]= "0">Wybierz Restaurację</option>
-          <option *ngFor="let restaurant of restaurats | async" [value]= "restaurant.id">{{restaurant.name}}</option>
+          <option *ngFor="let restaurant of restaurats | async"  [value]= "restaurant.id">{{restaurant.name}}</option>
         </select>
         <button class="btn btn-outline-success my-2 my-sm-0 margin" (click)="onClick()">Szukaj</button>
       </form>

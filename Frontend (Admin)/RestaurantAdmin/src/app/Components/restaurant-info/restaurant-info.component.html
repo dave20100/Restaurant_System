@@ -14,9 +14,18 @@
             </li>
         </ul>
     </div>
+    <h5 class="text-center" style="margin-bottom: 10px;"> Promocje</h5>
+    <div class="card"   style="margin-bottom: 10px;">
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let discount of info.discount" class="list-group-item text-center">
+                    {{discount.description}}: {{discount.value}}%
+                <button class="btn btn-success" style="float: right;" (click)="onDelete(discount.id)">Usuń promocje</button>
+            </li>
+        </ul>
+    </div>
     <hr/>
     <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-success"  style="margin:5px;">Usuń Restaurację</button>
+        <button type="button" class="btn btn-success"  style="margin:5px;" (click)="onDeleteRestaurant(info.id)">Usuń Restaurację</button>
         <button type="button" class="btn btn-success" routerLink="/AddDiscount/{{info.id}}" style="margin:5px;">Dodaj Promocję</button>
         <button type="button" class="btn btn-success" routerLink="/AddMenu/{{info.id}}" style="margin:5px;">Dodaj Menu</button>
     </div>

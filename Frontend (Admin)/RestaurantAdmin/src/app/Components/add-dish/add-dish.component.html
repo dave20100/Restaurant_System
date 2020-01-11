@@ -1,27 +1,39 @@
-<div class="card center" style="width:80%">
+  <div class="card center" style="width:80%">
     <div class="card-body">
-        <form>
+        <form (ngSubmit)="onSubmit()" #menuForm="ngForm">
             <div class="form-group">
-              <label for="exampleFormControlInput1">nazwa dania</label>
-              <input class="form-control" id="exampleFormControlInput1">
+              <label for="name">nazwa dania</label>
+              <input type="text" class="form-control" id="name"
+              required
+              [(ngModel)]="name" name="name">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">opis dania</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="description">opis dania</label>
+                <input type="text" class="form-control" id="description"
+                required
+                [(ngModel)]="description" name="description">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">cena</label>
-                <input class="form-control" id="exampleFormControlInput2">
+                <label for="price">cena</label>
+                <input type="number" class="form-control" id="price"
+                required
+                [(ngModel)]="price" name="price">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">wartość kaloryczna</label>
-                <input  class="form-control" id="exampleFormControlInput3">
+                <label for="kcal">wartość kaloryczna</label>
+                <input type="number" class="form-control" id="kcal"
+                required
+                [(ngModel)]="kcal" name="kcal">
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">zdjęcie dania</label>
-                <input  class="form-control" id="exampleFormControlInput4">
+                <label for="url">zdjęcie dania</label>
+                <input type="url" class="form-control" id="url"
+                required
+                [(ngModel)]="url" name="url">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+      
+            <button type="submit" class="btn btn-success" [disabled]="!menuForm.form.valid">Submit</button>
+      
           </form>
     </div>
-  </div>
+</div>

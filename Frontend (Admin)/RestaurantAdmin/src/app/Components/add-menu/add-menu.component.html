@@ -2,13 +2,14 @@
 
 <div class="card center" style="width:80%">
     <div class="card-body">
-        <form>
+        <form (ngSubmit)="onSubmit()" #menuForm="ngForm">
             <div class="form-group">
-                <label for="exampleFormControlInput1">nazwa menu</label>
-                <input class="form-control" id="exampleFormControlInput1">
-            </div>
-            <button type="submit" class="btn btn-primary" (click)= "onClick()">Submit</button>
-        </form>
+              <label for="name">nazwa</label>
+              <input type="text" class="form-control" id="name"
+              required
+              [(ngModel)]="name" name="name">
+            </div>     
+            <button type="submit" class="btn btn-success" [disabled]="!menuForm.form.valid">Submit</button>    
+          </form>
     </div>
-    <button  class="btn btn-primary" (click)= "onClick()">Sub</button>
 </div>

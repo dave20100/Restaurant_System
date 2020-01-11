@@ -1,26 +1,23 @@
 
+
 <div class="card center" style="width:80%">
     <div class="card-body">
-        <form>
+        <form (ngSubmit)="onSubmit()" #menuForm="ngForm">
             <div class="form-group">
-                <label for="exampleFormControlInput1">opis promocji</label>
-                <input class="form-control" id="exampleFormControlInput1">
+              <label for="name">opis promocji</label>
+              <input type="text" class="form-control" id="name"
+              required
+              [(ngModel)]="name" name="name">
             </div>
             <div class="form-group">
-                <label for="inputState">wartość promocji</label>
-                <select id="inputState" class="form-control">
-                  <option selected>wybierz</option>
-                  <option>5%</option>
-                  <option>10%</option>
-                  <option>15%</option>
-                  <option>20%</option>
-                  <option>25%</option>
-                  <option>30%</option>
-                  <option>35%</option>
-                  <option>40%</option>
-                </select>
+                <label for="value">wartość promocji</label>
+                <input type="number" class="form-control" id="value"
+                required
+                [(ngModel)]="value" name="value">
               </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+      
+            <button type="submit" class="btn btn-success" [disabled]="!menuForm.form.valid">Submit</button>
+      
+          </form>
     </div>
 </div>
