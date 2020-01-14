@@ -166,8 +166,32 @@ Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za a
 			\end{figure}
 			\newpage
 	\subsection{Aplikacja (Backend)}
+	Backend służy jako wygodny w użyciu interfejs dostępu do bazy danych zwracając potrzebne informacje w formacie JSON.
+		\subsubsection{Technologie}
+		Aplikacja backendowa została napisana w języku C\# jako .Net Core Api w wersji 2.2. Dostęp do bazy danych zaimplementowany został wykorzystując ORM Entity Framework, który pozwala w prosty wykonywać operacje na tabelach tj. dodawanie elementów, usuwanie elementów.
+		\subsubsection{Model}
+			Model wykorzystywany w api odpowiada strukturze bazy danych zapisanej w języku C\#
+			\begin{figure}
+				\centering
+				\caption{Diagram klas}
+			\end{figure}
+		\subsubsection{Kontrolery}
+		Aplikacja pozwala użytkownikowi na korzystanie z 5 różnych kontrolerów:
+			\begin{itemize}
+				\item
+					\textbf{Discount Controller} 
+				\item
+					\textbf{Dish Controller}
+				\item
+					\textbf{Menu Controller}
+				\item
+					\textbf{Restaurant Controller}
+				\item
+					\textbf{Location Controller}
+			\end{itemize}
+		
 	\newpage
-	\subsection{Aplikacja (Frontend - Adnin)}
+	\subsection{Aplikacja (Frontend - Admin)}
 		\subsubsection{Funkcje aplikacji - diagram przypadków użycia}
 		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze wsględu na cel projektu głównym celem było przedstawienie możliwości replikacji.
 			\begin{figure}[hbt!]
@@ -190,8 +214,5 @@ Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za a
 \section{Wdrożenie i testowanie aplikacji}
 
 \section{Podsumowanie}
-
- 
-1
  
 \end{document}
