@@ -140,9 +140,15 @@ Snapshot Agent - agent (snapshot.exe) odpowiedzialny za generowanie snapshotów 
 Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za aplikowanie replikowanych transakcji oraz snapshotów do tabel subskrybenta. Zródłem danych dla agenta jest baza dystrybucyjna. Agent może być uruchamiany na subskrybencie (Pull Subscription) albo na dystrybutorze (Push Subscription).
 \end{itemize}
 
-	\subsection{Replikacja transakcyjna}
+	\begin{figure}[hbt!]
+		\includegraphics[width=8cm]{Files/Pictures/ReplikacjaArchitektura}
+		\centering
+		\caption{Schemat replikacji}
+	\end{figure}
 
-	\subsection{Replikacja master-slave}
+	\subsection{Replikacja transakcyjna}
+	\paragraph{} Replikacja transakcyjna jest replikacją synchroniczną, szczególnie efektywną, gdy chcemy zmniejszyć ilość replikowanych danych, ponieważ zmiany są replikowane na podstawie logu transakcyjnego. W przypadku replikacji transakcyjnej wszelkie modyfikacje bazie w postaci danych w tabeli jak i zmian na strukturze tabel są propagowane do subskrybentów. Podczas transakcji na serwerze master. Wszystkie zmiany trafiają do dziennika transakcji i tam oczekują na wysłanie ich do subskrybentów jeśli są dla nich przeznaczone. Przesyłane są tylko transakcje zrealizowane, a użytkownicy nie są wyłączeni z korzystania z tablic, w czasie ich aktualizacji. Technika ta pozwala zachować spójność transakcyjną. Dziennik transakcji bazy danych publikatora przechowuje transakcje przeznaczone do replikacji, dopóki nie zostaną przeniesione do bazy dystrybutora, a następnie zostaje oczyszczony tak, że zostają w nim tylko transakcje, które nie są przeznaczone do replikacji.
+	
 
 \section{Model konceptualny i fizyczny bazy danych}
 	\subsection{Model konceptualny}
@@ -155,9 +161,35 @@ Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za a
 	\subsection{Definiowanie łączników}
 	\newpage
 	\subsection{Wykorzystanie mechanizmów replikacji transakcyjnej}
-	\newpage
+System został stworzony na jednej maszynie, na której umieszczone zostały 3 instancji Microsoft SQL Server 2017. Taka możliwość nie wymaga podziału na kontenery, jest to wspierana przez Microsoft możliwość. Konieczny jest jedynie wybór odpowiedniej ścieżki instalacji.
+	
+	\begin{figure}[hbt!]
+		\includegraphics[width=8cm]{Files/Pictures/instancje}
+		\centering
+		\caption{Instancje serwera}
+	\end{figure}
+	
+
+	
+	Następnym krokiem który należy przygotować przed uruchomieniem replikacji jest przejście instrukcji przygotowanego przez producenta. Czynności które zaleca wykonać producent to:
+	
+	\begin{itemize}
+	\item	\textbf{Przygotowanie odpowiednich kont} – Microsoft zaleca stworzenie kont z odpowiednimi zabezpieczeniami
+	\item	\textbf{Utworzenie folderu} – Konieczne jest stworzenie folderu w którym znajdować się będą 	pliki tym czasowe bazy oraz obrazy. Folder musi mieć odpowiednio ustawione opcje udostępniania w sieci oraz prawa użytkowników dla każdego z użytkowników.
+	\end{itemize}
+	
+	Replikacja transakcyjna została skonfigurowana przy pomocy narzędzia Microsoft SQL Server Management Studio. Na początku na serwerze master została utworzona i wypełniona początkowymi danymi baza danych. Następnie na pierwszej instancji – Node0 został uruchomiona funkcja dystrybucji oraz publikacja zawierająca całą bazę danych dla aplikacji restauracji.
+	
+	\begin{figure}[hbt!]
+		\includegraphics[width=8cm]{Files/Pictures/instancje}
+		\centering
+		\caption{Instancje serwera}
+	\end{figure}
+	
+	
+	\newpage	
 	\subsection{Wykorzystanie mechanizmów replikacji master-slave}
-	\newpage
+
 \section{Projekt i implementacja aplikacji}
 			\begin{figure}[hbt!]
 				\includegraphics[width=8cm]{Files/Pictures/SystemStruct}
