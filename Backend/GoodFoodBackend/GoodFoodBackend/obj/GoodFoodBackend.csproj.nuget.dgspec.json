@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Dawid\\Desktop\\Studia\\Magisterka 2 semestr\\Rozproszone i obiektowe systemy\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj": {}
+    "E:\\Studia\\sementr8\\rozproszoneBazy\\Rest\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Dawid\\Desktop\\Studia\\Magisterka 2 semestr\\Rozproszone i obiektowe systemy\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj": {
+    "E:\\Studia\\sementr8\\rozproszoneBazy\\Rest\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Dawid\\Desktop\\Studia\\Magisterka 2 semestr\\Rozproszone i obiektowe systemy\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj",
+        "projectUniqueName": "E:\\Studia\\sementr8\\rozproszoneBazy\\Rest\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj",
         "projectName": "GoodFoodBackend",
-        "projectPath": "C:\\Users\\Dawid\\Desktop\\Studia\\Magisterka 2 semestr\\Rozproszone i obiektowe systemy\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj",
-        "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Dawid\\Desktop\\Studia\\Magisterka 2 semestr\\Rozproszone i obiektowe systemy\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\obj\\",
+        "projectPath": "E:\\Studia\\sementr8\\rozproszoneBazy\\Rest\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\GoodFoodBackend.csproj",
+        "packagesPath": "C:\\Users\\Blondi\\.nuget\\packages\\",
+        "outputPath": "E:\\Studia\\sementr8\\rozproszoneBazy\\Rest\\Restaurant_System\\Backend\\GoodFoodBackend\\GoodFoodBackend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\PROGRAM FILES\\DOTNET\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Blondi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,10 +72,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\PROGRAM FILES\\DOTNET\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
