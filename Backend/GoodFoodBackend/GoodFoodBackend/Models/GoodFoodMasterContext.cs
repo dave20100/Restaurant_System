@@ -59,14 +59,14 @@ namespace GoodFoodBackend.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;");
+                optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-JIDDNB4\NODE0;Initial Catalog=GoodFoodMaster;User ID=GF_writer;Password=admin");
                 try
                 {
                     this.SaveChanges();
                 }
                 catch
                 {
-                    optionsBuilder.UseSqlServer("Server =.\\SQLExpress; Database = GoodFoodMaster; Trusted_Connection = True;");
+                    optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-JIDDNB4\NODE0;Initial Catalog=GoodFoodMaster;User ID=GF_writer;Password=admin");
                 }
             }
         }
@@ -79,7 +79,6 @@ namespace GoodFoodBackend.Models
 
             modelBuilder.Entity<Discount>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(200)
@@ -95,8 +94,6 @@ namespace GoodFoodBackend.Models
 
             modelBuilder.Entity<Dish>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Description)
                     .HasMaxLength(200)
                     .IsUnicode(false);
@@ -121,8 +118,6 @@ namespace GoodFoodBackend.Models
 
             modelBuilder.Entity<Location>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.City)
                     .HasMaxLength(100)
                     .IsUnicode(false);
@@ -142,7 +137,6 @@ namespace GoodFoodBackend.Models
 
             modelBuilder.Entity<Menu>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(200)
@@ -156,7 +150,6 @@ namespace GoodFoodBackend.Models
 
             modelBuilder.Entity<Restaurant>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(200)

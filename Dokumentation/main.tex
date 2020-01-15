@@ -152,17 +152,9 @@ Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za a
 
 \section{Model konceptualny i fizyczny bazy danych}
 	\subsection{Model konceptualny}
-\begin{figure}[hbt!]
-				\includegraphics[width=16cm]{Files/Pictures/Model_K}
-				\centering
-				\caption{Model fizyczny}
-			\end{figure}
+
 	\subsection{Model fizyczny}
-\begin{figure}[hbt!]
-				\includegraphics[width=16cm]{Files/Pictures/Model}
-				\centering
-				\caption{Model fizyczny}
-			\end{figure}
+
 \section{Implementacja bazy danych w środowisku ...}
 	\subsection{Realizacja bazy danych}
 	\newpage
@@ -186,22 +178,23 @@ System został stworzony na jednej maszynie, na której umieszczone zostały 3 i
 	\item	\textbf{Utworzenie folderu} – Konieczne jest stworzenie folderu w którym znajdować się będą 	pliki tym czasowe bazy oraz obrazy. Folder musi mieć odpowiednio ustawione opcje udostępniania w sieci oraz prawa użytkowników dla każdego z użytkowników.
 	\end{itemize}
 	
-	Replikacja transakcyjna została skonfigurowana przy pomocy narzędzia Microsoft SQL Server Management Studio. Na początku na serwerze master została utworzona i wypełniona początkowymi danymi baza danych. Następnie na pierwszej instancji – Node0 został uruchomiona funkcja dystrybucji oraz publikacja zawierająca całą bazę danych dla aplikacji restauracji.
+	Replikacja transakcyjna została skonfigurowana przy pomocy narzędzia Microsoft SQL Server Management Studio. Na początku na serwerze master została utworzona i wypełniona początkowymi danymi. Następnie na pierwszej instancji – Node0 został uruchomiony dystrybutor oraz publikacja zawierająca całą bazę danych aplikacji restauracji.
 	
 	\begin{figure}[hbt!]
-		\includegraphics[width=8cm]{Files/Pictures/instancje}
+		\includegraphics[width=8cm]{Files/Pictures/postawionaReplikacja}
 		\centering
-		\caption{Instancje serwera}
+		\caption{Urochomiony publisher i subscriber}
 	\end{figure}
+	
+	MS SQL Serwer w przypadku replikacji transakcyjnej udostępnia możliwość uruchomienia subskrybentów zarówno po stronie mastera jak i klienta. W naszym przypadku wybraliśmy pierwszą opcje. Podczas implementacji subskrypcje utworzyły po swojej stronie instancje baz do których będą replikowane dane. Istotnym elementem jest dodanie prawa do nowopowstałych baz na instancjach SQL Serwera użytkownikom których konta zostały użyte w konfiguracji subskrypcji. Po utworzeniu 
 	
 	
 	\newpage	
 	\subsection{Wykorzystanie mechanizmów replikacji master-slave}
 
 \section{Projekt i implementacja aplikacji}
-Na poniższym schemacie została pokazana struktura systemu. W celu zrealizowania założeń zaimplementowane zostały dwie aplikacje dostępowe dla dwóch różnych typów odbiorców (klient, administraotr).
 			\begin{figure}[hbt!]
-				\includegraphics[width=7cm]{Files/Pictures/SystemStruct}
+				\includegraphics[width=8cm]{Files/Pictures/SystemStruct}
 				\centering
 				\caption{Diagram przypadków użycia}
 			\end{figure}
@@ -234,44 +227,15 @@ Na poniższym schemacie została pokazana struktura systemu. W celu zrealizowani
 	\newpage
 	\subsection{Aplikacja (Frontend - Admin)}
 		\subsubsection{Funkcje aplikacji - diagram przypadków użycia}
-		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze wsględu na zakres projektu głównym celem było przedstawienie możliwości replikacji.
+		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze wsględu na cel projektu głównym celem było przedstawienie możliwości replikacji.
 			\begin{figure}[hbt!]
 				\includegraphics[width=8cm]{Files/Pictures/UMLAdminApp}
 				\centering
 				\caption{Diagram przypadków użycia}
 			\end{figure}
 		\subsubsection{Realizacja wybranych funkcjonalności}
-		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8, w którym użyte zostały technologie:  TypeScript, CSS, HTML, Bootstrap. Administrator może połączyć się z aplikacją za pomocą przeglądarki internetowej. Pierwszym widokiem jest ekran z listą dostępnych w sieci restauracji, z których można wybrać jedną z wymienionych. Dodatkowo zawarte są podstawowe informacje o wartościach, jakie firma respektuje. Następny widok jest związany z wyświetleniem szczegółowych wiadomości o wybranym lokalu (menu, promocje, adres). Akcje, jakie można wykonać z poziomu tego okna to:
-		\newpage
-		\begin{itemize}
-				\item
-					\textbf{prziejście do okna umożliwiającego odanie promocję,} 
-				\item
-					\textbf{prziejście do okna umożliwiającego odanie menu,}
-				\item
-					\textbf{przejscie do informacji o wybranym menu,}
-				\item
-					\textbf{usunięcie restauracji,}
-				\item
-					\textbf{usunięcie wybranej promocji.}
-			\end{itemize}
-			Analogicznie w widokach związanych z menu i daniem można dokonywać operacji  dodania oraz usunięcia wybranych elementów.
-
-			\begin{figure}[hbt!]
-				\includegraphics[width=8cm]{Files/Pictures/MenuList_A}
-				\centering
-				\caption{Widok informacji o menu}
-			\end{figure}
-
-			\begin{figure}[hbt!]
-				\includegraphics[width=8cm]{Files/Pictures/Add_A}
-				\centering
-				\caption{Widok dodawania obiektu przez administratora}
-			\end{figure}
-	
-	\newpage
+		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8.
 	\subsection{Aplikacja (Frontend - Customer)}
-
 		\subsubsection{Funkcje aplikacji - diagram przypadków użycia}
 		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji klienckiej. Podobnie jak w poprzedniej aplikacji zostały zaimplementowane wszystkie funkcjonalności.
 			\begin{figure}[hbt!]
@@ -280,14 +244,7 @@ Na poniższym schemacie została pokazana struktura systemu. W celu zrealizowani
 				\caption{Diagram przypadków użycia}
 			\end{figure}
 		\subsubsection{Realizacja wybranych funkcjonalności}	
-		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8, w którym użyte zostały technologie:  TypeScript, CSS, HTML, Bootstrap.
-		Jest to aplikacja, która dokonuje jedynie odczytu. Została stworzona w celu informacyjnym dla klienta, który może znaleźć najważniejsze informacje o lokalach należących do sieci restauracji.
-			\begin{figure}[hbt!]
-				\includegraphics[width=8cm]{Files/Pictures/Info_C}
-				\centering
-				\caption{Widok informacji o restauracji}
-			\end{figure}
-\newpage
+		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8.
 \section{Wdrożenie i testowanie aplikacji}
 
 \section{Podsumowanie}
