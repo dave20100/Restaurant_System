@@ -205,29 +205,51 @@ System został stworzony na jednej maszynie, na której umieszczone zostały 3 i
 		Aplikacja backendowa została napisana w języku C\# jako .Net Core Api w wersji 2.2. Dostęp do bazy danych zaimplementowany został wykorzystując ORM Entity Framework, który pozwala w prosty wykonywać operacje na tabelach tj. dodawanie elementów, usuwanie elementów.
 		\subsubsection{Model}
 			Model wykorzystywany w api odpowiada strukturze bazy danych zapisanej w języku C\#
-			\begin{figure}
+			\begin{figure}[hbt!]
+				\includegraphics[width=8cm]{Files/Pictures/DiagramKlas}
 				\centering
-				\caption{Diagram klas}
+				\caption{Diagram klas aplikacji backendowej}
 			\end{figure}
 		\subsubsection{Kontrolery}
-		Aplikacja pozwala użytkownikowi na korzystanie z 5 różnych kontrolerów:
+		Aplikacja pozwala użytkownikowi na korzystanie z 4 różnych kontrolerów:
 			\begin{itemize}
-				\item
-					\textbf{Discount Controller} 
-				\item
-					\textbf{Dish Controller}
-				\item
-					\textbf{Menu Controller}
-				\item
-					\textbf{Restaurant Controller}
-				\item
-					\textbf{Location Controller}
+				\item \textbf{Discount Controller} 
+					\begin{itemize}
+						\item \textbf{GET} \textit{api/Discount/id}	- zwraca informacje o promocji z podanym id	
+						\item \textbf{POST} \textit{api/Discount} - dodaje promocję do bazy danych
+						\item \textbf{DELETE} \textit{api/Discount/id}	 - usuwa promocję o podanym id				
+					\end{itemize}
+
+				\item \textbf{Dish Controller}
+					\begin{itemize}
+						\item \textbf{GET} \textit{api/Dish/id} - zwraca informacje o daniu z podanym id
+						\item \textbf{POST} \textit{api/Dish} - dodaje danie do bazy danych
+						\item \textbf{DELETE} \textit{api/Dish/id} - usuwa danie o podanym id
+					\end{itemize}
+					
+				\item \textbf{Menu Controller}
+					\begin{itemize} 
+						\item \textbf{GET} \textit{api/Menu/id} - zwraca informacje o menu oraz pełną listą dań które się w nim znajdują
+						\item \textbf{POST} \textit{api/Menu} - dodaje menu do bazy danych
+						\item \textbf{DELETE} \textit{api/Menu/id} - usuwa menu o podanym id
+					\end{itemize}
+					
+				\item \textbf{Restaurant Controller}
+					\begin{itemize}
+						\item \textbf{GET} \textit{api/Restaurant/id} - zwraca podstawowe informacje o restauracji z podanym id 
+						\item \textbf{GET} \textit{api/Restaurant/Full/id} - zwraca wszystkie informacje o podanej restauracji (lokalizacja, promocje, menu)
+						\item \textbf{GET} \textit{api/Restaurant/Discounts/id} - zwraca wszystkie promocje z restauracji o podanym id
+						\item \textbf{GET} \textit{api/Restaurant/Dishes/id} - zwraca wszystkie dania z restauracji o podanym id
+						\item \textbf{POST} \textit{api/Restaurant/} - dodaje restauracje do bazy danych
+						\item \textbf{DELETE} \textit{api/Restaurant/id} - usuwa restauracje o podanym id 
+					\end{itemize}
 			\end{itemize}
-		
+		\subsubsection{Zachowanie wysokiej dostępności w przypadku awarii}
+		W aplikacji rozwiązany jest także problem związany z możliwością awarii jednej z baz danych. Dzięki wykorzystaniu metody onConfiguring, która jest uruchamiana za każdym razem kiedy request zostaje odebrany przez aplikację jesteśmy w stanie wykonać próbę zapisu do jednej z baz i jeżeli się ona nie powiedzie zostaje wykorzystana inna.
 	\newpage
 	\subsection{Aplikacja (Frontend - Admin)}
 		\subsubsection{Funkcje aplikacji - diagram przypadków użycia}
-		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze wsględu na cel projektu głównym celem było przedstawienie możliwości replikacji.
+		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze względu na cel projektu głównym celem było przedstawienie możliwości replikacji.
 			\begin{figure}[hbt!]
 				\includegraphics[width=8cm]{Files/Pictures/UMLAdminApp}
 				\centering
