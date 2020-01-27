@@ -4,7 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[polish]{babel}
 
-
+\usepackage{hyperref}
 
 
 \renewcommand{\contentsname} {Spis treści}
@@ -154,11 +154,22 @@ Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za a
 	\subsection{Replikacja transakcyjna}
 	\paragraph{} Replikacja transakcyjna jest replikacją synchroniczną, szczególnie efektywną, gdy chcemy zmniejszyć ilość replikowanych danych, ponieważ zmiany są replikowane na podstawie logu transakcyjnego. W przypadku replikacji transakcyjnej wszelkie modyfikacje bazie w postaci danych w tabeli jak i zmian na strukturze tabel są propagowane do subskrybentów. Podczas transakcji na serwerze master. Wszystkie zmiany trafiają do dziennika transakcji i tam oczekują na wysłanie ich do subskrybentów jeśli są dla nich przeznaczone. Przesyłane są tylko transakcje zrealizowane, a użytkownicy nie są wyłączeni z korzystania z tablic, w czasie ich aktualizacji. Technika ta pozwala zachować spójność transakcyjną. Dziennik transakcji bazy danych publikatora przechowuje transakcje przeznaczone do replikacji, dopóki nie zostaną przeniesione do bazy dystrybutora, a następnie zostaje oczyszczony tak, że zostają w nim tylko transakcje, które nie są przeznaczone do replikacji.
 	
-
+\newpage
 \section{Model konceptualny i fizyczny bazy danych}
 	\subsection{Model konceptualny}
 
+\begin{figure}[hbt!]
+				\includegraphics[width=10cm]{Files/Pictures/Model_K}
+				\centering
+				\caption{Model konceptualny}
+			\end{figure}
 	\subsection{Model fizyczny}
+
+\begin{figure}[hbt!]
+				\includegraphics[width=10cm]{Files/Pictures/Model}
+				\centering
+				\caption{Model fizyczny}
+			\end{figure}
 	
 	\subsection{Model replikacji}	
 	System ma służyć klientom sieci restauracji do przeglądania menu w poszczególnych restauracjach. Jeden węzeł główny ma możliwość modyfikacji, do niego dostęp jest poprzez aplikację administratorską która umożliwia modyfikacje wartości w bazie. Na kolejnych dwóch węzłach użytkownicy mają jedynie prawo odczytu, na tych połączone są aplikacje klienckie. Na węźle nadrzędnym uruchomiony jest publisher który nadzoruje rozgłaszanie logów transakcyjnych. Również na głównej bazie znajdują się subskrybenci którzy odpowiadają za przyjmowanie danych na bazach docelowych. Zostały one umieszczone po stronie bazy głównej, MS Serwer umożliwia umieszczenie ich również po stronie subskrybentów.
@@ -172,10 +183,10 @@ Agent Dystrybucji (Distribution Agent) - agent (distrib.exe) odpowiedzialny za a
 	\end{figure}
 	
 
-
+\newpage
 \section{Implementacja bazy danych w środowisku}
 	\subsection{Realizacja bazy danych}
-	\newpage
+	
 	\subsection{Wykorzystanie mechanizmów replikacji transakcyjnej}
 System został stworzony na jednej maszynie, na której umieszczone zostały 3 instancji Microsoft SQL Server 2017. Taka możliwość nie wymaga podziału na kontenery, jest to wspierana przez Microsoft możliwość. Konieczny jest jedynie wybór odpowiedniej ścieżki instalacji.
 	
@@ -208,7 +219,7 @@ System został stworzony na jednej maszynie, na której umieszczone zostały 3 i
 	\newpage	
 
 \section{Projekt i implementacja aplikacji}
-Projekt składa się z kilku segmentów, poszczególne warstwy ich opcje zostały przedstawione poniżej.
+Na poniższym schemacie została pokazana struktura systemu. W celu zrealizowania założeń zaimplementowane zostały dwie aplikacje dostępowe dla dwóch różnych typów odbiorców (klient, administraotr).
 
 			\begin{figure}[hbt!]
 				\includegraphics[width=8cm]{Files/Pictures/SystemStruct}
@@ -264,9 +275,11 @@ Projekt składa się z kilku segmentów, poszczególne warstwy ich opcje został
 		\subsubsection{Zachowanie wysokiej dostępności w przypadku awarii}
 		W aplikacji rozwiązany jest także problem związany z możliwością awarii jednej z baz danych. Dzięki wykorzystaniu metody onConfiguring, która jest uruchamiana za każdym razem kiedy request zostaje odebrany przez aplikację jesteśmy w stanie wykonać próbę zapisu do jednej z baz i jeżeli się ona nie powiedzie zostaje wykorzystana inna.
 	\newpage
+\newpage
 	\subsection{Aplikacja (Frontend - Admin)}
 		\subsubsection{Funkcje aplikacji - diagram przypadków użycia}
-		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze względu na cel projektu głównym celem było przedstawienie możliwości replikacji.
+		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze wsględu na cel projektu głównym celem było przedstawienie możliwości replikacji.
+		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji administratorskiej. Wszystkie przedstawione na diagramie funkcjonalności zostały zaimplementowane. Ze wsględu na zakres projektu głównym celem było przedstawienie możliwości replikacji.
 			\begin{figure}[hbt!]
 				\includegraphics[width=8cm]{Files/Pictures/UMLAdminApp}
 				\centering
@@ -274,17 +287,53 @@ Projekt składa się z kilku segmentów, poszczególne warstwy ich opcje został
 			\end{figure}
 		\subsubsection{Realizacja wybranych funkcjonalności}
 		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8.
+		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8, w którym użyte zostały technologie:  TypeScript, CSS, HTML, Bootstrap. Administrator może połączyć się z aplikacją za pomocą przeglądarki internetowej. Pierwszym widokiem jest ekran z listą dostępnych w sieci restauracji, z których można wybrać jedną z wymienionych. Dodatkowo zawarte są podstawowe informacje o wartościach, jakie firma respektuje. Następny widok jest związany z wyświetleniem szczegółowych wiadomości o wybranym lokalu (menu, promocje, adres). Akcje, jakie można wykonać z poziomu tego okna to:
+		\begin{itemize}
+				\item
+					\textbf{prziejście do okna umożliwiającego odanie promocję,} 
+				\item
+					\textbf{prziejście do okna umożliwiającego odanie menu,}
+				\item
+					\textbf{przejscie do informacji o wybranym menu,}
+				\item
+					\textbf{usunięcie restauracji,}
+				\item
+					\textbf{usunięcie wybranej promocji.}
+			\end{itemize}
+			Analogicznie w widokach związanych z menu i daniem można dokonywać operacji  dodania oraz usunięcia wybranych elementów.
+
+			\begin{figure}[hbt!]
+				\includegraphics[width=8cm]{Files/Pictures/MenuList_A}
+				\centering
+				\caption{Widok informacji o menu}
+			\end{figure}
+
+			\begin{figure}[hbt!]
+				\includegraphics[width=8cm]{Files/Pictures/Add_A}
+				\centering
+				\caption{Widok dodawania obiektu przez administratora}
+			\end{figure}
+
+	\newpage
 	\subsection{Aplikacja (Frontend - Customer)}
+
 		\subsubsection{Funkcje aplikacji - diagram przypadków użycia}
 		Na poniższym rysunku przedstawiono diagram przypadków użycia stworzonej aplikacji klienckiej. Podobnie jak w poprzedniej aplikacji zostały zaimplementowane wszystkie funkcjonalności.
 			\begin{figure}[hbt!]
-				\includegraphics[width=8cm]{Files/Pictures/UMLCustomerApp}
+				\includegraphics[width=10cm]{Files/Pictures/UMLCustomerApp}
 				\centering
 				\caption{Diagram przypadków użycia}
 			\end{figure}
 		\subsubsection{Realizacja wybranych funkcjonalności}	
 		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8.
-		
+		Aplikacja kliencka została zrealizowana w technologi internetowej z wykorzystaniem framework'u Angular 8, w którym użyte zostały technologie:  TypeScript, CSS, HTML, Bootstrap.
+		Jest to aplikacja, która dokonuje jedynie odczytu. Została stworzona w celu informacyjnym dla klienta, który może znaleźć najważniejsze informacje o lokalach należących do sieci restauracji.
+			\begin{figure}[hbt!]
+				\includegraphics[width=8cm]{Files/Pictures/Info_C}
+				\centering
+				\caption{Widok informacji o restauracji}
+			\end{figure}
+\newpage
 \section{Wdrożenie i testowanie aplikacji}
 Prezentacja działania srodowiska wymagała specjalnego przygotowania i konfiguracji sieci lokalnej.
 \subsection{Konfiguracja środowiska produkcyjnego}
@@ -313,7 +362,13 @@ Testy potwierdziły niezawodność bazy i realizację założonych modeli zachow
 
 \newpage
 \section{Podsumowanie}
-
+W trakcie prac nad realizacją projektu udało się wykorzystać mechanizm replikacji
+transakcyjnej i replikacji master-slave. Obsługa tych narzędzi do tworzenia bazy danych
+okazała się łatwa i intuicyjna. Najwięcej problemów napotkano przy konfiguracji
+praw dostępu do bazy oraz sama konfiguracja tego. Wybór stworzenia własnego środowiska wdrożeniowego oraz testowego zaoszczędziło grupie czas na inne zadania zawarte w projekcie.
+Zrealizowana została również aplikacja kliencka i administratorska w technologii Angular łącząca się z bazą przez aplikację pośrednią zarządzającą dostępem do wybranych węzłów. Cały projekt zakończył się sukcesem, a działanie programu klienckiego spełnia wszystkie
+wcześniejsze założenia.
+\newpage
 \section{Literatura}
 
 \begin{thebibliography}{99}
@@ -325,6 +380,10 @@ Helion
 \bibitem{pa} R. Wójcik
 \emph{Wykłady},
 2019
+\bibitem{pa}
+\href{https://angular.io/guide/forms}{Dokumentacja Angular 8 [Link]}
+\bibitem{pa}
+\href{https://getbootstrap.com}{Dokumentacja Bootstrap 4 [Link]}
 \end{thebibliography}
 
  
